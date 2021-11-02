@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.murray.commons.mapper.system.SystemUserMapper">
+    <sql id="select_column">
+    ta.id
+    ,ta.user_id as userId
+    ,ta.nick_name as nickName
+    ,ta.image
+    ,ta.phone
+    ,ta.password
+    ,ta.system_user_type as systemUserType
+    ,ta.position
+    ,ta.password_salt as passwordSalt
+    ,ta.remark
+    ,ta.version
+    ,ta.is_enable as isEnable
+    ,ta.create_by as createBy
+    ,ta.create_time as createTime
+    ,ta.update_by as updateBy
+    ,ta.update_time as updateTime
+
+    </sql>
+    <!--系统用户查询结果集-->
+    <resultMap id="pageSysUserResultMap" type="com.murray.model.pojo.system.SystemUserPojo">
+        <result property="id" column="id"/>
+        <result property="userId" column="userId"/>
+        <result property="nickName" column="nickName"/>
+        <result property="image" column="image"/>
+        <result property="phone" column="phone"/>
+        <result property="password" column="password"/>
+        <result property="systemUserType" column="systemUserType;"/>
+        <result property="position" column="position"/>
+        <result property="passwordSalt" column="passwordSalt"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="createBy" column="createBy"/>
+        <result property="updateBy" column="updateBy"/>
+        <result property="isEnable" column="isEnable"/>
+        <collection property="roles" ofType="String"
+                    select="getRolesByUserId" column="id">
+        </collection>
+    </resultMap>
+    <!--查询列表-->
+    <select id="getPageSystemUser" parameterType="java.util.Map"
+            resultMap="pageSysUserResultMap">
+        select
+        <include refid="select_column"/>
+        FROM t_system_user ta
+
+        <where>
+            <if test="query.id != null ">
+                AND ta.id = #{query.id}
+            </if>
+            <!-- 用户名 -->
+            <if test="query.userId != null and query.userId != ''">
+                AND ta.user_id = #{query.userId}
+            </if>
+            <!-- 用户昵称 -->
+            <if test="query.nickName != null and query.nickName != ''">
+                AND ta.nick_name = #{query.nickName}
+            </if>
+            <if test="query.nickNameLike != null and query.nickNameLike != ''">
+                AND ta.nick_name LIKE concat('%',#{query.nickName},'%')
+            </if>
+            <!-- 头像 <image> -->
+            <if test="query.image != null and query.image != ''">
+                AND ta.image = #{query.image}
+            </if>
+            <!-- 手机号码 -->
+            <if test="query.phone != null and query.phone != ''">
+                AND ta.phone = #{query.phone}
+            </if>
+            <!-- 密码 <hide> -->
+            <if test="query.password != null and query.password != ''">
+                AND ta.password = #{query.password}
+            </if>
+            <!-- 类型 :{1:系统管理员,2:运营,3:来宾} -->
+            <if test="query.systemUserType != null ">
+                AND ta.system_user_type = #{query.systemUserType}
+            </if>
+            <!-- 岗位 -->
+            <if test="query.position != null and query.position != ''">
+                AND ta.position = #{query.position}
+            </if>
+            <!-- 加密盐 -->
+            <if test="query.passwordSalt != null and query.passwordSalt != ''">
+                AND ta.password_salt = #{query.passwordSalt}
+            </if>
+            <!-- 备注 -->
+            <if test="query.remark != null and query.remark != ''">
+                AND ta.remark = #{query.remark}
+            </if>
+            <!-- 版本号 -->
+            <if test="query.version != null ">
+                AND ta.version = #{query.version}
+            </if>
+            <!-- 状态 {0:禁用,1:启用} -->
+            <if test="query.isEnable != null ">
+                AND ta.is_enable = #{query.isEnable}
+            </if>
+            <!-- 创建人 -->
+            <if test="query.createBy != null and query.createBy != ''">
+                AND ta.create_by = #{query.createBy}
+            </if>
+            <!-- 创建时间 -->
+            <if test="query.createTimeStart != null ">
+                <![CDATA[
+                        AND ta.create_time >= #{query.createTimeStart}
+                        ]]>
+            </if>
+            <if test="query.createTimeEnd != null ">
+                <![CDATA[
+                        AND ta.create_time <= #{query.createTimeEnd}
+                        ]]>
+            </if>
+            <!-- 修改人 -->
+            <if test="query.updateBy != null and query.updateBy != ''">
+                AND ta.update_by = #{query.updateBy}
+            </if>
+            <!-- 修改时间 -->
+            <if test="query.updateTimeStart != null ">
+                <![CDATA[
+                        AND ta.update_time >= #{query.updateTimeStart}
+                        ]]>
+            </if>
+            <if test="query.updateTimeEnd != null ">
+                <![CDATA[
+                        AND ta.update_time <= #{query.updateTimeEnd}
+                        ]]>
+            </if>
+
+            <if test="query.idList != null ">
+                <foreach collection="query.idList" item="item" open="AND ta.id IN(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+
+    </select>
+    <select id="getRolesByUserId" resultType="String">
+        SELECT tsr.role_name FROM `t_system_role_user` tsru LEFT JOIN `t_system_role` tsr ON  tsru.role_id = tsr.id WHERE tsru.uid = #{primaryId}
+    </select>
+
+
+</mapper>
+
+      
