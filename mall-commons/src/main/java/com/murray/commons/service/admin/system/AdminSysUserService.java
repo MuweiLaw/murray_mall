@@ -1,10 +1,10 @@
-package com.murray.commons.service.system;
+package com.murray.commons.service.admin.system;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.murray.commons.mapper.system.SystemUserMapper;
-import com.murray.model.po.system.SystemUserPo;
-import com.murray.model.pojo.system.SystemUserPojo;
+import com.murray.commons.mapper.admin.system.AdminSysUserMapper;
+import com.murray.model.po.admin.sys.AdminSysUserPo;
+import com.murray.model.pojo.admin.sys.AdminSysUserPojo;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
  * @author Murray
  */
 @Service
-public class SystemUserService extends ServiceImpl<SystemUserMapper, SystemUserPo> {
+public class AdminSysUserService extends ServiceImpl<AdminSysUserMapper, AdminSysUserPo> {
 
-    public IPage<SystemUserPojo> getPageSystemUser(IPage<SystemUserPojo> queryMap) {
-        return baseMapper.getPageSystemUser(queryMap);
+    public IPage<AdminSysUserPojo> getPageSystemUser(IPage<AdminSysUserPojo> queryMap) {
+        return baseMapper.getPageAdminSysUser(queryMap);
     }
 
     /**

@@ -1,9 +1,9 @@
-package com.murray.commons.mapper.system;
+package com.murray.commons.mapper.admin.system;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.murray.model.po.system.SystemUserPo;
-import com.murray.model.pojo.system.SystemUserPojo;
+import com.murray.model.po.admin.sys.AdminSysUserPo;
+import com.murray.model.pojo.admin.sys.AdminSysUserPojo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -12,9 +12,9 @@ import java.util.List;
 /**
  * @author Murray
  */
-public interface SystemUserMapper extends BaseMapper<SystemUserPo> {
+public interface AdminSysUserMapper extends BaseMapper<AdminSysUserPo> {
 
-    IPage<SystemUserPojo> getPageSystemUser(IPage<SystemUserPojo> page);
+    IPage<AdminSysUserPojo> getPageAdminSysUser(IPage<AdminSysUserPojo> page);
 
     /**
      * 目前 TokenUntil.getUid()是获取主键ID, 业务需要字段user_id

@@ -1,4 +1,4 @@
-package com.murray.model.po.system;
+package com.murray.model.po.admin.sys;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -20,8 +20,8 @@ import java.util.List;
  */
 @Data
 @Accessors(chain = true)
-@TableName("t_system_user")
-public class SystemUserPo implements Serializable {
+@TableName("admin_sys_user")
+public class AdminSysUserPo implements Serializable {
 
     private static final long serialVersionUID = -1595900002524121090L;
 

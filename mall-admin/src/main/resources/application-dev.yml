@@ -2,31 +2,10 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1:3306/dev_murray_mall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://8.135.96.57:3306/dev_mall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: admin
-#  rabbitmq:
-#    host: 10.1.5.85
-#    port: 5672
-#    username: admin
-#    password: admin
-#    #虚拟host 可以不设置,使用server默认host
-#    virtual-host: my_vhost
+    password: admin123456
 
-  # redis哨兵模式
-  redis:
-    password:
-    sentinel:
-      nodes: 10.1.5.159:26379,10.1.5.159:26380,10.1.5.159:26381
-      master: local-master
-      password:
-    lettuce:
-      pool:
-        max-idle: 10
-        max-active: 20
-        min-idle: 5
-        max-wait: 2000ms
-    database: 0
 
 logging:
   file:
@@ -34,36 +13,4 @@ logging:
   level:
     root: info
 logging.level:
-  com.sunline: debug
-# image uploader configuration item
-image-uploader:
-  image-host: http://121.35.249.14:8000
-  image-path: /data/apps/sunline/data/image-service/upload/image
-  address: 10.1.5.125
-  port: 22
-  user: appuser_rw
-  password: qozjI0+5E1eGK1VCJ44ojA==
-  aes_iv: werghj9876856329
-  maxFileSize: 31457280
-  maxRequestSize: 31457280
-
-dubbo:
-  application:
-    name: sunline-mmp-admin-serivce-dubbo
-  registry:
-    protocol: zookeeper
-    address: nacos://10.1.5.85:8848?namespace=sunline-test-register
-    id: zkDubboRegister
-    timeout: 60000
-  protocol:
-    name: dubbo
-    port: 20888
-  consumer:
-    check: false
-    timeout: 6000
-  scan:
-    base-packages: com.sunline
-
-scv:
-  file:
-    maxSize: 5000
+  com.murray: debug

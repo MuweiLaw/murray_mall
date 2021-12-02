@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.murray.commons.mapper.system.SystemUserMapper">
+<mapper namespace="com.murray.commons.mapper.admin.system.AdminSysUserMapper">
     <sql id="select_column">
     ta.id
     ,ta.user_id as userId
@@ -21,7 +21,7 @@
 
     </sql>
     <!--系统用户查询结果集-->
-    <resultMap id="pageSysUserResultMap" type="com.murray.model.pojo.system.SystemUserPojo">
+    <resultMap id="pageSysUserResultMap" type="com.murray.model.pojo.admin.sys.AdminSysUserPojo">
         <result property="id" column="id"/>
         <result property="userId" column="userId"/>
         <result property="nickName" column="nickName"/>
@@ -43,7 +43,7 @@
         </collection>
     </resultMap>
     <!--查询列表-->
-    <select id="getPageSystemUser" parameterType="java.util.Map"
+    <select id="getPageAdminSysUser" parameterType="java.util.Map"
             resultMap="pageSysUserResultMap">
         select
         <include refid="select_column"/>

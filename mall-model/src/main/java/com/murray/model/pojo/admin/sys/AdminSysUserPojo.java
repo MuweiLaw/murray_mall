@@ -1,4 +1,4 @@
-package com.murray.model.pojo.system;
+package com.murray.model.pojo.admin.sys;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Data
 @Accessors(chain = true)
-public class SystemUserPojo implements Serializable {
+public class AdminSysUserPojo implements Serializable {
 
     private static final long serialVersionUID = -6597411129113617036L;
 
