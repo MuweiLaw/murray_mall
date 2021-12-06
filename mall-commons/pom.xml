@@ -16,6 +16,7 @@
         <java.version>11</java.version>
     </properties>
     <dependencies>
+        <!--    个人模块依赖    -->
         <dependency>
             <groupId>com.murray</groupId>
             <artifactId>mall-model</artifactId>
@@ -24,6 +25,10 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
         </dependency>
     </dependencies>
 
