@@ -1,6 +1,7 @@
 package com.murray.shiro.controller;
 
 import com.murray.commons.ResponseInfo;
+import com.murray.commons.controller.BaseController;
 import com.murray.shiro.bean.CacheUser;
 import com.murray.shiro.business.AdminBusiness;
 import com.murray.model.dto.admin.sys.ImageCodeDTO;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/admin")
-public class AdminController {
+public class AdminController extends BaseController {
     @Autowired
     private AdminBusiness adminBusiness;
 
@@ -28,6 +29,10 @@ public class AdminController {
     @PostMapping(value = "/login")
     public ResponseInfo<CacheUser> login(@RequestBody LoginDTO loginDTO) {
         return ResponseInfo.assertion(adminBusiness.login(loginDTO));
+    }
+    @GetMapping(value = "/hello")
+    public ResponseInfo<String> login() {
+        return ResponseInfo.success("Hello!!!!");
     }
 
     /**
